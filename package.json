@@ -1,0 +1,23 @@
+{
+  "name": "topmachines-catalogo",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catalogo de repuestos de motos - Top Machines, Servicio & Atencion",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^6.0.5",
+    "astro": "^7.3.5",
+    "preact": "^10.29.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^5.9.2"
+  }
+}

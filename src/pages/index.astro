@@ -1,0 +1,48 @@
+---
+import CatalogApp from '../components/CatalogApp';
+import Footer from '../components/Footer.astro';
+import { businessName, businessTagline, isPhoneConfigured } from '../config';
+import '../styles/global.css';
+
+const title = `${businessName} - Catálogo de Repuestos de Motos | ${businessTagline}`;
+const description =
+  'Arma tu lista de repuestos de motos y recibe la cotización oficial por WhatsApp. Sin precios en la página, atención directa del vendedor.';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#101115" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="es_ES" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+    />
+    <link rel="icon" href="/logo.png" />
+  </head>
+
+  <body>
+    <CatalogApp client:load />
+
+    <Footer />
+
+    {!isPhoneConfigured && (
+      <script is:inline>
+        console.warn(
+          '[Top Machines] Reemplaza TU_NUMERO_DE_TELEFONO en src/config.ts con tu número real y código de país.',
+        );
+      </script>
+    )}
+  </body>
+</html>
