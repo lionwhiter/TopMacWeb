@@ -1,5 +1,5 @@
 import type { RefObject } from 'preact';
-import type { CustomerData, FieldErrors } from '../lib/whatsapp';
+import type { CustomerData, CustomerTextField, FieldErrors, OrderType } from '../lib/whatsapp';
 import { UserIcon } from './Icons';
 
 interface CustomerFormProps {
@@ -7,7 +7,8 @@ interface CustomerFormProps {
   errors: FieldErrors;
   showAlert: boolean;
   formRef: RefObject<HTMLDivElement>;
-  onChange: (field: keyof CustomerData, value: string) => void;
+  onChange: (field: CustomerTextField, value: string) => void;
+  onOrderTypeChange: (value: OrderType) => void;
 }
 
 const FIELDS: Array<{
@@ -20,7 +21,19 @@ const FIELDS: Array<{
   { key: 'motorcycle', label: 'Modelo y año de la moto', placeholder: 'Ej. Bera SBR 150 (2023) / Empire Keeway Horse' },
 ];
 
-export default function CustomerForm({ data, errors, showAlert, formRef, onChange }: CustomerFormProps) {
+const ORDER_TYPES: Array<{ value: OrderType; label: string; hint: string }> = [
+  { value: 'detal', label: 'Detal', hint: 'Para mí o una unidad' },
+  { value: 'mayor', label: 'Mayorista', hint: 'Para revender' },
+];
+
+export default function CustomerForm({
+  data,
+  errors,
+  showAlert,
+  formRef,
+  onChange,
+  onOrderTypeChange,
+}: CustomerFormProps) {
   return (
     <div class="cart-form-section" ref={formRef}>
       <h3>
@@ -33,6 +46,28 @@ export default function CustomerForm({ data, errors, showAlert, formRef, onChang
           Completa los 3 campos obligatorios para enviar tu solicitud.
         </p>
       )}
+
+      <fieldset class="order-type">
+        <legend class="order-type-legend">Tipo de pedido</legend>
+        <div class="order-type-options">
+          {ORDER_TYPES.map((option) => {
+            const checked = data.orderType === option.value;
+            return (
+              <label class={`order-type-option${checked ? ' checked' : ''}`} key={option.value}>
+                <input
+                  type="radio"
+                  name="orderType"
+                  value={option.value}
+                  checked={checked}
+                  onChange={() => onOrderTypeChange(option.value)}
+                />
+                <span class="order-type-label">{option.label}</span>
+                <span class="order-type-hint">{option.hint}</span>
+              </label>
+            );
+          })}
+        </div>
+      </fieldset>
 
       {FIELDS.map((field) => {
         const hasError = Boolean(errors[field.key]);

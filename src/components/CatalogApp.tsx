@@ -6,11 +6,17 @@ import CategorySection from './CategorySection';
 import CartDrawer from './CartDrawer';
 import { NoResultsIcon } from './Icons';
 import { PRODUCTS_DATA, normalizeText, totalCategories, totalProducts } from '../data/products';
-import type { CartLine, CustomerData, FieldErrors } from '../lib/whatsapp';
+import type { CartLine, CustomerData, CustomerTextField, FieldErrors, OrderType } from '../lib/whatsapp';
 import { buildWhatsappUrl, totalUnits as countUnits, validateCustomer } from '../lib/whatsapp';
 
 /** Datos iniciales del formulario del cliente. */
-const EMPTY_CUSTOMER: CustomerData = { name: '', address: '', motorcycle: '', notes: '' };
+const EMPTY_CUSTOMER: CustomerData = {
+  name: '',
+  address: '',
+  motorcycle: '',
+  notes: '',
+  orderType: 'detal',
+};
 
 export default function CatalogApp() {
   const [query, setQuery] = useState('');
@@ -102,12 +108,16 @@ export default function CatalogApp() {
     setActiveCategory(null);
   }
 
-  function handleCustomerChange(field: keyof CustomerData, value: string) {
+  function handleCustomerChange(field: CustomerTextField, value: string) {
     setCustomer((prev) => ({ ...prev, [field]: value }));
     if (field !== 'notes' && errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
       setShowAlert(false);
     }
+  }
+
+  function handleOrderTypeChange(value: OrderType) {
+    setCustomer((prev) => ({ ...prev, orderType: value }));
   }
 
   function handleSubmit() {
@@ -184,6 +194,7 @@ export default function CatalogApp() {
         onDecrease={decrease}
         onRemove={remove}
         onCustomerChange={handleCustomerChange}
+        onOrderTypeChange={handleOrderTypeChange}
         onSubmit={handleSubmit}
       />
     </>

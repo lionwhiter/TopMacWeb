@@ -12,21 +12,17 @@ export const PRODUCTS_DATA: ProductGroup[] = [
     items: [
       'Base KLR',
       'Bolsa Fox',
-      'Chaquita',
-      'Fecha',
       'Llavero de tina de Resorte',
-      'Maikel',
       'Medias Horse',
       'Pañuelo',
       'pechera',
       'Placa de Lujo',
       'Plantica de Música',
-      'Queso blanco',
-      'Quesomaikel',
       'Reloj Redondo Adorno',
       'Tira Goma Americana',
       'Tornillo decorativo',
-      'Wz Montal'
+      'Wz Montal.',
+      'Barra Estabilizadora Cromada.'
     ],
   },
   {
@@ -48,12 +44,10 @@ export const PRODUCTS_DATA: ProductGroup[] = [
   {
     category: 'BANDAS DE FRENO',
     items: [
-      'Banda',
       'BANDA DE FRENO CG150-H',
       'BANDA DE FRENO JAGUAR CG150',
       'Banda freno bera',
       'Banda Freno Horse',
-      'Bandas Freno Bera'
     ],
   },
   { category: 'BASTONES', items: ['BASTON DELANTERO CG150-H', 'BASTON DELANTERO CGB'] },
@@ -82,15 +76,11 @@ export const PRODUCTS_DATA: ProductGroup[] = [
   {
     category: 'BUJIAS',
     items: [
-      'Bujia Aceleracion',
       'BUJIA CG 150 JAGUAR D8TC PUNTA DIAMANTE (COLOR) GP',
-      'Bujia Cgoudet Japones',
       'Bujia DT8TC',
       'BUJIA GY-SCT A7TC',
       'BUJIA JAGUAR CG 150 D8TC',
       'Bujia NGK',
-      'Bujia Pata Cambio',
-      'Bujia punta de Diamante',
       'BUJIA PUNTA DIAMANTE CG150',
       'Bujia triple punta'
     ],
@@ -163,7 +153,6 @@ export const PRODUCTS_DATA: ProductGroup[] = [
   { category: 'EMBOBINADOS', items: ['EMBOBINADO 4 CABLES', 'EMBOBINADO 5 CABLES'] },
   { category: 'EMPAQUES', items: ['Empaque tapa bomba Unirex', 'Empaques de motor'] },
   { category: 'ESCAPES', items: ['Tubo de Escape'] },
-  { category: 'ESPIGAS', items: ['Espiga'] },
   { category: 'FAROS Y MICAS', items: ['Base del faro Bera', 'micas HORSE UND'] },
   {
     category: 'FILTROS',
@@ -240,10 +229,8 @@ export const PRODUCTS_DATA: ProductGroup[] = [
     items: [
       'CHAPALETA DE GOMA C/TORNILLOS',
       'estopera de Barra horser',
-      'manubrio',
       'Martillera',
       'Puño',
-      'puños'
     ],
   },
   { category: 'MOTORES', items: ['biela', 'Motor completo 150cc'] },
@@ -295,7 +282,7 @@ export const PRODUCTS_DATA: ProductGroup[] = [
     ],
   },
   { category: 'PURIFICADORES', items: ['PURIFICADOR CG 150'] },
-  { category: 'QUIMICOS', items: ['Anti-Corriche 1 (500ml)', 'antiespiche', 'Pega epoxy', 'SKP Anti-Perforante'] },
+  { category: 'QUIMICOS', items: ['antiespiche', 'Pega epoxy', 'SKP Anti-Perforante'] },
   { category: 'REGULADORES', items: ['Regulador', 'REGULADOR CG150', 'Reled'] },
   { category: 'RETROVISORES', items: ['Retrovisor CGB', 'Retrovisor SBR'] },
   {
@@ -358,9 +345,9 @@ export const PRODUCTS_DATA: ProductGroup[] = [
   {
     category: 'VOLANTES',
     items: [
-      'T VOlnate parte de Abajo',
-      'T VOlnate parte de Arriba',
-      'taza de Volante',
+      'T Volnate parte de Abajo',
+      'T Volnate parte de Arriba',
+      'Taza de Volante',
       'Volante cromado',
       'Volante negro'
     ],

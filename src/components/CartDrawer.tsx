@@ -1,5 +1,5 @@
 import type { RefObject } from 'preact';
-import type { CartLine, CustomerData, FieldErrors } from '../lib/whatsapp';
+import type { CartLine, CustomerData, CustomerTextField, FieldErrors, OrderType } from '../lib/whatsapp';
 import { isPhoneConfigured } from '../config';
 import CustomerForm from './CustomerForm';
 import { BagIcon, CartIcon, TrashIcon, WhatsappIcon } from './Icons';
@@ -17,7 +17,8 @@ interface CartDrawerProps {
   onIncrease: (name: string) => void;
   onDecrease: (name: string) => void;
   onRemove: (name: string) => void;
-  onCustomerChange: (field: keyof CustomerData, value: string) => void;
+  onCustomerChange: (field: CustomerTextField, value: string) => void;
+  onOrderTypeChange: (value: OrderType) => void;
   onSubmit: () => void;
 }
 
@@ -35,9 +36,11 @@ export default function CartDrawer({
   onDecrease,
   onRemove,
   onCustomerChange,
+  onOrderTypeChange,
   onSubmit,
 }: CartDrawerProps) {
   const isEmpty = lines.length === 0;
+  const isWholesale = customer.orderType === 'mayor';
 
   return (
     <>
@@ -107,6 +110,7 @@ export default function CartDrawer({
                 showAlert={showAlert}
                 formRef={formRef}
                 onChange={onCustomerChange}
+                onOrderTypeChange={onOrderTypeChange}
               />
             </>
           )}
@@ -115,7 +119,7 @@ export default function CartDrawer({
         <div class="cart-footer">
           <button class="btn-confirm-wa" onClick={onSubmit} disabled={isEmpty}>
             <WhatsappIcon />
-            Confirmar Pedido por WhatsApp
+            {isWholesale ? 'Enviar Pedido al Mayor' : 'Confirmar Pedido por WhatsApp'}
           </button>
           <p class="wa-disclaimer">
             {isPhoneConfigured

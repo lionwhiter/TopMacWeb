@@ -40,7 +40,7 @@ npm run check   # verificación de tipos
 src/
 ├── config.ts              # número de WhatsApp y datos de la marca
 ├── data/products.ts       # 42 categorías / 65 repuestos
-├── lib/whatsapp.ts        # validación, mensaje y URL de wa.me
+├── lib/whatsapp.ts        # validación, mensaje, detalle CSV y URL de wa.me
 ├── styles/global.css      # paleta y estilos (global por la isla Preact)
 ├── components/
 │   ├── CatalogApp.tsx     # isla raíz: estado de búsqueda y carrito
