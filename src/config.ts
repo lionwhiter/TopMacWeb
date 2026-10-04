@@ -16,7 +16,7 @@
 const WHATSAPP_PHONE_NUMBER = '584125687995';
 /* ========================================================================== */
 
-const PLACEHOLDER = '584125687995';
+const PLACEHOLDER = 'TU_NUMERO_DE_TELEFONO';
 
 /** Número normalizado: solo dígitos, o cadena vacía si aún no fue configurado. */
 export const whatsappPhone: string = WHATSAPP_PHONE_NUMBER.replace(/\D/g, '');
