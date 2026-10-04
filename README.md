@@ -75,10 +75,41 @@ Reemplaza los archivos `public/logo.png` (cabecera, 160px de ancho) y
 
 ## Despliegue
 
-El build es 100% estático: sube la carpeta `dist/` a cualquier hosting
-(Netlify, Vercel, Cloudflare Pages, GitHub Pages).
+El hosting es **Cloudflare Pages**. El build es 100% estático y no necesita ni `base`
+ni adaptador de Cloudflare: Pages sirve `dist/` desde la raíz del dominio.
 
-Si publicas en un subdirectorio, agrega `base` en `astro.config.mjs`:
+En `dash.cloudflare.com` ve a **Workers & Pages → Create → Pages → Connect to Git**,
+conecta este repositorio y usa estos valores:
+
+| Campo                  | Valor           |
+| ---------------------- | --------------- |
+| Production branch      | `main`          |
+| Framework preset       | `Astro`         |
+| Build command          | `npm run build` |
+| Build output directory | `dist`          |
+
+El sitio queda en `https://<nombre>.pages.dev` y cada `push` a `main` dispara un
+build nuevo.
+
+### Versión de Node
+
+Astro 7 exige Node 22.12 o superior. La versión está fijada en `.node-version`
+(`22.16.0`) para que el build no dependa del valor por defecto de la imagen de
+Cloudflare, que puede cambiar.
+
+### Dominio propio
+
+Cloudflare sirve los dominios y subdominios desde la raíz, así que un dominio
+propio **no** requiere `base` ni volver a compilar: solo agrega el dominio en el
+panel de Pages. Para un subdominio basta un CNAME apuntando a
+`<nombre>.pages.dev`; para el dominio raíz hay que mover los nameservers a
+Cloudflare.
+
+### Otros hostings
+
+Como el build es estático, `dist/` también se puede subir a Netlify, Vercel o
+GitHub Pages. Solo si el sitio quedara en un subdirectorio habría que agregar
+`base` en `astro.config.mjs`:
 
 ```js
 export default defineConfig({
