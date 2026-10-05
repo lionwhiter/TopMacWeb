@@ -1,4 +1,5 @@
 import { MinusIcon, PlusIcon } from './Icons';
+import { CategoryIcon } from './CategoryIcons';
 
 interface ProductCardProps {
   name: string;
@@ -13,9 +14,14 @@ export default function ProductCard({ name, category, qty, onIncrease, onDecreas
 
   return (
     <article class={`product-card${inCart ? ' in-cart' : ''}`}>
-      <div class="product-info">
-        <span class="cat-tag">{category}</span>
-        <h3>{name}</h3>
+      <div class="product-head">
+        <span class="product-icon">
+          <CategoryIcon category={category} size={24} />
+        </span>
+        <div class="product-info">
+          <span class="cat-tag">{category}</span>
+          <h3>{name}</h3>
+        </div>
       </div>
 
       <div class="product-actions">

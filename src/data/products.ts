@@ -5,7 +5,7 @@ export interface ProductGroup {
   items: string[];
 }
 
-/** Base de datos de productos: 76 categorías / 294 repuestos. */
+/** Base de datos de productos: 75 categorías / 280 repuestos. */
 export const PRODUCTS_DATA: ProductGroup[] = [
   {
     category: 'ACCESORIOS',

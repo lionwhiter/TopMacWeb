@@ -75,6 +75,7 @@ header {
   padding: 0 1.75rem;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: tm-entra-abajo 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .brand {
@@ -191,6 +192,7 @@ header {
   flex-direction: column;
   gap: 1.25rem;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  animation: tm-entra-arriba 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 
 .hero::before {
@@ -221,6 +223,7 @@ header {
   padding: 4px 10px;
   border-radius: 20px;
   margin-bottom: 0.6rem;
+  animation: tm-entra-escala 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
 }
 
 .hero-info h2 {
@@ -308,6 +311,7 @@ header {
   padding: 1rem 1.25rem;
   margin-bottom: 2rem;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  animation: tm-entra-arriba 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
 .cat-nav-title {
@@ -404,6 +408,7 @@ header {
 .category-block {
   margin-bottom: 2.75rem;
   scroll-margin-top: 100px;
+  animation: tm-entra-arriba 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .category-header-wrap {
@@ -430,6 +435,8 @@ header {
   background: var(--brand-orange);
   border-radius: 2px;
   box-shadow: 0 0 10px var(--brand-orange-glow);
+  transform-origin: left center;
+  animation: tm-entra-linea 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .category-title .count-tag {
@@ -488,6 +495,40 @@ header {
   border-color: var(--brand-orange);
   background: #23222a;
   box-shadow: 0 0 0 1px var(--brand-orange), 0 8px 20px rgba(242, 101, 34, 0.15);
+}
+
+.product-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+/* Caja del icono de categoría. El color lo hereda del contenedor, así que el
+   SVG pasa de gris a naranja con los estados de la tarjeta sin nada de JS. */
+.product-icon {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: rgba(242, 101, 34, 0.07);
+  border: 1px solid rgba(242, 101, 34, 0.2);
+  border-radius: 10px;
+  transition: var(--transition);
+}
+
+.product-card:hover .product-icon,
+.product-card.in-cart .product-icon {
+  color: var(--brand-orange);
+  background: rgba(242, 101, 34, 0.14);
+  border-color: rgba(242, 101, 34, 0.45);
+}
+
+.product-info {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .product-info h3 {
@@ -592,6 +633,7 @@ header {
   border-radius: var(--radius);
   color: var(--text-muted);
   margin: 2rem 0;
+  animation: tm-entra-escala 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .no-results .nr-icon {
@@ -1084,6 +1126,67 @@ footer {
   margin-top: 6px;
   font-size: 0.8rem;
   color: #7f8698;
+}
+
+/* ====================== ANIMACIÓN DE ENTRADA =========================== */
+/* Solo al cargar la página. Es CSS puro: si el JS falla, el contenido sigue
+   visible porque el estado inicial es el estado normal, no `opacity: 0`.
+   Se mueve solo `transform` y `opacity` para no provocar reflow. */
+
+@keyframes tm-entra-arriba {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes tm-entra-abajo {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes tm-entra-escala {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tm-entra-linea {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Respetamos a quien tiene el movimiento reducido activado en el sistema:
+   sin animación, el contenido aparece tal cual. */
+@media (prefers-reduced-motion: reduce) {
+  header,
+  .hero,
+  .hero-badge,
+  .category-nav-section,
+  .category-block,
+  .category-title-pill,
+  .no-results {
+    animation: none !important;
+  }
 }
 
 /* ============================ RESPONSIVE ================================ */
